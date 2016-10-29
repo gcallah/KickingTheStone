@@ -19,6 +19,7 @@ p {
 
 blockquote {
     margin: 8px 64px 8px 64px;
+    font-size: 18px;
 }
 
 ol, ul, dl, li {
