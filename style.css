@@ -1,73 +1,311 @@
+/* Kicking the Stone — site stylesheet */
+
+:root {
+    --text: #2b2b2b;
+    --muted: #5a6470;
+    --page: #def;
+    --paper: #fbfdff;
+    --rule: #b9cde0;
+    --title-bg: #063;
+    --title-fg: #fcc;
+    --h2: #903;
+    --h3: #336;
+    --h4: #339;
+    --link: #1a4f8b;
+    --link-visited: #5b3a8c;
+    --measure: 40em;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
 body {
     margin: 0;
-    padding: 0;
-    font-size: 20px;
-    color: #333;
-    background: #def;
+    padding: 0 1rem 2rem;
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, "Times New Roman", serif;
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--page);
 }
 
-table, th, td {
-    border: 1px solid black;
-    }
-    th, td {
-            padding: 15px;
-    }
-
-p {
-    margin: 8px 40px 8px 40px;
+main {
+    max-width: var(--measure);
+    margin: 0 auto;
+    padding: 0.5rem 2rem 2rem;
+    background: var(--paper);
+    border-radius: 0 0 6px 6px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
 }
 
-blockquote {
-    margin: 8px 64px 8px 64px;
-    font-size: 18px;
+main.home {
+    margin-top: 1.5rem;
+    border-radius: 6px;
+    text-align: center;
 }
 
-ol, ul, dl, li {
-    margin: 20px 12px 8px 12px;
+main.home h3 a {
+    text-decoration: none;
 }
 
-p {
-    padding: 0;
-    line-height: 140%;
+main.home h3 a:hover,
+main.home h3 a:focus-visible {
+    text-decoration: underline;
 }
 
-h1,h2,h3,h4,h5 {
+/* ---------- Headings ---------- */
+
+h1, h2, h3, h4, h5 {
     font-weight: bold;
+    line-height: 1.25;
 }
 
 h1 {
-    margin: 28px 8px 24px 8px;
+    margin: 0 -2rem 1.5rem;
+    padding: 0.6em 1rem;
     text-align: center;
     font-weight: 300;
-    font-size: 32px;
-    background-color: #063;
-    color: #fcc;
+    font-size: 2rem;
+    background-color: var(--title-bg);
+    color: var(--title-fg);
 }
 
 h2 {
-    font-size: 26px;
-    margin: 20px 24px 12px 24px;
-    color: #903;
+    font-size: 1.6rem;
+    margin: 1.5rem 0 0.75rem;
+    color: var(--h2);
 }
 
 h2.subhead {
-    font-weight:
-    normal;
-    margin-top:
-    0;
+    font-weight: normal;
+    margin-top: 0;
 }
 
 h3 {
-    font-size: 24px;
-    margin: 20px 32px 12px 32px;
-    color: #336;
-    font-weight: bold;
+    font-size: 1.35rem;
+    margin: 1.5rem 0 0.75rem;
+    color: var(--h3);
 }
 
 h4 {
-    font-size: 18px;
-    margin: 16px 40px 12px 40px;
-    color: #339;
-    font-weight: bold;
+    font-size: 1.15rem;
+    margin: 1.25rem 0 0.5rem;
+    color: var(--h4);
 }
 
+/* ---------- Text ---------- */
+
+p {
+    margin: 0 0 1em;
+    padding: 0;
+}
+
+blockquote {
+    margin: 1em 0 1.25em;
+    padding: 0.25em 0 0.25em 1.25em;
+    border-left: 3px solid var(--rule);
+    font-size: 1.1rem;
+    color: #3d3d3d;
+}
+
+ol, ul, dl {
+    margin: 1em 0;
+    padding-left: 1.75em;
+}
+
+li {
+    margin: 0.4em 0;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid var(--rule);
+    margin: 2rem 0;
+}
+
+a {
+    color: var(--link);
+    text-underline-offset: 0.15em;
+}
+
+a:visited {
+    color: var(--link-visited);
+}
+
+a:hover,
+a:focus-visible {
+    color: var(--h2);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+table {
+    border-collapse: collapse;
+    margin: 1em 0;
+    max-width: 100%;
+}
+
+table, th, td {
+    border: 1px solid #333;
+}
+
+th, td {
+    padding: 0.75em;
+}
+
+/* Bibliography URLs are long; let them wrap on small screens. */
+main a {
+    overflow-wrap: anywhere;
+}
+
+/* ---------- Site chrome ---------- */
+
+.site-header {
+    max-width: var(--measure);
+    margin: 0 auto;
+    padding: 1rem 0 0.5rem;
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.site-header a,
+.site-header a:visited {
+    color: var(--title-bg);
+    text-decoration: none;
+}
+
+.chapter-nav {
+    max-width: var(--measure);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.25rem 1rem;
+    font-size: 0.95rem;
+    line-height: 1.35;
+}
+
+.chapter-nav.top {
+    padding: 0.5rem 0 0.75rem;
+}
+
+.chapter-nav.bottom {
+    padding: 1rem 0;
+}
+
+.chapter-nav .prev,
+.chapter-nav .next {
+    flex: 1 1 0;
+}
+
+.chapter-nav .next {
+    text-align: right;
+}
+
+.chapter-nav .contents {
+    flex: 0 0 auto;
+}
+
+.chapter-nav a,
+.chapter-nav a:visited {
+    color: var(--link);
+    text-decoration: none;
+}
+
+.chapter-nav a:hover,
+.chapter-nav a:focus-visible {
+    text-decoration: underline;
+}
+
+/* ---------- Home page ---------- */
+
+.center {
+    text-align: center;
+}
+
+.portrait {
+    display: block;
+    margin: 1.5rem auto 0;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.subtitle {
+    font-size: 1.3rem;
+    font-style: italic;
+    margin: 0 0 1.5rem;
+}
+
+.epigraph p {
+    font-size: 1.05rem;
+    color: var(--muted);
+    margin: 0 auto;
+    max-width: 32em;
+}
+
+/* ---------- Small screens ---------- */
+
+@media (max-width: 40em) {
+    body {
+        font-size: 1.1rem;
+        padding: 0 0.5rem 1.5rem;
+    }
+
+    main {
+        padding: 0.25rem 1rem 1.5rem;
+    }
+
+    h1 {
+        margin: 0 -1rem 1.25rem;
+        font-size: 1.6rem;
+    }
+
+    .chapter-nav {
+        font-size: 0.85rem;
+    }
+
+    .chapter-nav .contents {
+        order: -1;
+        flex-basis: 100%;
+        text-align: center;
+    }
+}
+
+/* ---------- Print ---------- */
+
+@media print {
+    body {
+        background: #fff;
+        font-size: 12pt;
+        padding: 0;
+    }
+
+    main {
+        box-shadow: none;
+        max-width: none;
+        padding: 0;
+    }
+
+    .site-header,
+    .chapter-nav {
+        display: none;
+    }
+
+    h1 {
+        background: none;
+        color: #000;
+        margin: 0 0 1em;
+    }
+
+}
