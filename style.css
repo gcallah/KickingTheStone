@@ -1,19 +1,23 @@
-/* Kicking the Stone — site stylesheet */
+/* Kicking the Stone — site stylesheet
+   An eighteenth-century book page: warm laid paper, Garamond text,
+   Fell display type, oxblood accents. */
 
 :root {
-    --text: #2b2b2b;
-    --muted: #5a6470;
-    --page: #def;
-    --paper: #fbfdff;
-    --rule: #b9cde0;
-    --title-bg: #063;
-    --title-fg: #fcc;
-    --h2: #903;
-    --h3: #336;
-    --h4: #339;
-    --link: #1a4f8b;
-    --link-visited: #5b3a8c;
-    --measure: 40em;
+    --ink: #2b2520;
+    --ink-soft: #5c5148;
+    --ink-faint: #8a7d70;
+    --paper: #fbf7ee;
+    --desk: #ece3cf;
+    --rule: #d8ccb4;
+    --accent: #7a2323;
+    --accent-dark: #571616;
+    --link: #7a2323;
+    --link-visited: #5a3a5e;
+    --measure: 36em;
+
+    --text-font: "EB Garamond", Garamond, "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --display-font: "IM Fell English SC", "IM Fell English", "EB Garamond", Garamond, Georgia, serif;
+    --display-italic: "IM Fell English", "EB Garamond", Garamond, Georgia, serif;
 }
 
 *, *::before, *::after {
@@ -27,59 +31,70 @@ html {
 
 body {
     margin: 0;
-    padding: 0 1rem 2rem;
-    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, "Times New Roman", serif;
-    font-size: 1.25rem;
-    line-height: 1.6;
-    color: var(--text);
-    background: var(--page);
+    padding: 0 1.25rem 3rem;
+    font-family: var(--text-font);
+    font-size: 1.3rem;
+    line-height: 1.65;
+    color: var(--ink);
+    font-variant-numeric: oldstyle-nums proportional-nums;
+    font-feature-settings: "liga", "kern";
+    background-color: var(--desk);
+    background-image:
+        radial-gradient(ellipse at 50% 0%, rgba(255, 252, 244, 0.7), transparent 70%),
+        repeating-linear-gradient(0deg, rgba(120, 95, 60, 0.025) 0 1px, transparent 1px 4px);
+    background-attachment: fixed;
 }
+
+::selection {
+    background: rgba(122, 35, 35, 0.18);
+}
+
+/* ---------- The page ---------- */
 
 main {
-    max-width: var(--measure);
+    max-width: calc(var(--measure) + 8rem);
     margin: 0 auto;
-    padding: 0.5rem 2rem 2rem;
+    padding: 3.5rem 4rem 3rem;
     background: var(--paper);
-    border-radius: 0 0 6px 6px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
-}
-
-main.home {
-    margin-top: 1.5rem;
-    border-radius: 6px;
-    text-align: center;
-}
-
-main.home h3 a {
-    text-decoration: none;
-}
-
-main.home h3 a:hover,
-main.home h3 a:focus-visible {
-    text-decoration: underline;
+    border: 1px solid #e2d7c0;
+    box-shadow:
+        0 1px 2px rgba(60, 40, 20, 0.06),
+        0 8px 30px rgba(60, 40, 20, 0.10);
 }
 
 /* ---------- Headings ---------- */
 
 h1, h2, h3, h4, h5 {
-    font-weight: bold;
-    line-height: 1.25;
+    line-height: 1.2;
+    font-weight: normal;
 }
 
 h1 {
-    margin: 0 -2rem 1.5rem;
-    padding: 0.6em 1rem;
+    margin: 0 0 2.25rem;
+    font-family: var(--display-font);
+    font-size: 2.6rem;
     text-align: center;
-    font-weight: 300;
-    font-size: 2rem;
-    background-color: var(--title-bg);
-    color: var(--title-fg);
+    color: var(--ink);
+    letter-spacing: 0.01em;
+}
+
+h1::after {
+    content: "\2766";            /* ❦ fleuron */
+    display: block;
+    margin-top: 0.6rem;
+    font-family: var(--text-font);
+    font-size: 1.3rem;
+    color: var(--accent);
 }
 
 h2 {
-    font-size: 1.6rem;
-    margin: 1.5rem 0 0.75rem;
-    color: var(--h2);
+    margin: 2.5rem 0 1rem;
+    font-size: 1.15rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    text-align: center;
+    color: var(--accent);
 }
 
 h2.subhead {
@@ -88,15 +103,20 @@ h2.subhead {
 }
 
 h3 {
-    font-size: 1.35rem;
-    margin: 1.5rem 0 0.75rem;
-    color: var(--h3);
+    margin: 2.5rem 0 0.9rem;
+    font-family: var(--display-italic);
+    font-style: italic;
+    font-size: 1.65rem;
+    color: var(--accent-dark);
 }
 
 h4 {
-    font-size: 1.15rem;
-    margin: 1.25rem 0 0.5rem;
-    color: var(--h4);
+    margin: 1.75rem 0 0.6rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    font-variant: small-caps;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
 }
 
 /* ---------- Text ---------- */
@@ -104,14 +124,35 @@ h4 {
 p {
     margin: 0 0 1em;
     padding: 0;
+    text-align: justify;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+}
+
+/* Drop cap on a chapter's opening paragraph */
+main > h1 + p::first-letter {
+    float: left;
+    margin: 0.08em 0.1em 0 0;
+    font-family: var(--display-font);
+    font-size: 3.6em;
+    line-height: 0.8;
+    color: var(--accent);
 }
 
 blockquote {
-    margin: 1em 0 1.25em;
-    padding: 0.25em 0 0.25em 1.25em;
-    border-left: 3px solid var(--rule);
-    font-size: 1.1rem;
-    color: #3d3d3d;
+    margin: 1.5em 1.5em 1.75em;
+    padding: 0 0 0 1.25em;
+    border-left: 1px solid var(--accent);
+    font-size: 1.12rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    text-align: justify;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+}
+
+blockquote p {
+    margin-bottom: 0.6em;
 }
 
 ol, ul, dl {
@@ -125,13 +166,25 @@ li {
 
 hr {
     border: 0;
-    border-top: 1px solid var(--rule);
-    margin: 2rem 0;
+    height: 1.5rem;
+    margin: 2.5rem 0;
+    text-align: center;
+    overflow: visible;
+}
+
+hr::before {
+    content: "\2042";            /* ⁂ asterism */
+    font-size: 1.2rem;
+    color: var(--ink-faint);
 }
 
 a {
     color: var(--link);
-    text-underline-offset: 0.15em;
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-decoration-color: rgba(122, 35, 35, 0.35);
+    text-underline-offset: 0.18em;
+    transition: text-decoration-color 0.15s, color 0.15s;
 }
 
 a:visited {
@@ -140,7 +193,14 @@ a:visited {
 
 a:hover,
 a:focus-visible {
-    color: var(--h2);
+    color: var(--accent-dark);
+    text-decoration-color: currentColor;
+}
+
+a:focus-visible {
+    outline: 2px solid rgba(122, 35, 35, 0.4);
+    outline-offset: 2px;
+    border-radius: 2px;
 }
 
 img {
@@ -150,19 +210,19 @@ img {
 
 table {
     border-collapse: collapse;
-    margin: 1em 0;
+    margin: 1.5em 0;
     max-width: 100%;
 }
 
 table, th, td {
-    border: 1px solid #333;
+    border: 1px solid var(--rule);
 }
 
 th, td {
-    padding: 0.75em;
+    padding: 0.6em 0.8em;
 }
 
-/* Bibliography URLs are long; let them wrap on small screens. */
+/* Long bibliography URLs should wrap on small screens. */
 main a {
     overflow-wrap: anywhere;
 }
@@ -170,38 +230,45 @@ main a {
 /* ---------- Site chrome ---------- */
 
 .site-header {
-    max-width: var(--measure);
+    max-width: calc(var(--measure) + 8rem);
     margin: 0 auto;
-    padding: 1rem 0 0.5rem;
-    font-size: 1rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    padding: 1.75rem 0 0.4rem;
+    text-align: center;
+    font-family: var(--display-font);
+    font-size: 1.15rem;
+    letter-spacing: 0.04em;
 }
 
 .site-header a,
 .site-header a:visited {
-    color: var(--title-bg);
+    color: var(--ink-soft);
     text-decoration: none;
 }
 
+.site-header a:hover {
+    color: var(--accent);
+}
+
 .chapter-nav {
-    max-width: var(--measure);
+    max-width: calc(var(--measure) + 8rem);
     margin: 0 auto;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: baseline;
-    flex-wrap: wrap;
-    gap: 0.25rem 1rem;
-    font-size: 0.95rem;
+    gap: 0.25rem 1.5rem;
+    font-size: 1rem;
+    font-style: italic;
     line-height: 1.35;
+    color: var(--ink-soft);
 }
 
 .chapter-nav.top {
-    padding: 0.5rem 0 0.75rem;
+    padding: 0.4rem 0.25rem 1rem;
 }
 
 .chapter-nav.bottom {
-    padding: 1rem 0;
+    padding: 1.25rem 0.25rem 0;
 }
 
 .chapter-nav .prev,
@@ -215,64 +282,160 @@ main a {
 
 .chapter-nav .contents {
     flex: 0 0 auto;
+    font-style: normal;
+    font-variant: small-caps;
+    letter-spacing: 0.08em;
 }
 
 .chapter-nav a,
 .chapter-nav a:visited {
-    color: var(--link);
+    color: var(--ink-soft);
     text-decoration: none;
 }
 
 .chapter-nav a:hover,
 .chapter-nav a:focus-visible {
-    text-decoration: underline;
+    color: var(--accent);
 }
 
-/* ---------- Home page ---------- */
+/* ---------- Home page: a title page ---------- */
 
 .center {
     text-align: center;
 }
 
+main.home {
+    margin-top: 2.5rem;
+    text-align: center;
+}
+
+main.home p {
+    text-align: center;
+    hyphens: manual;
+    -webkit-hyphens: manual;
+}
+
 .portrait {
     display: block;
-    margin: 1.5rem auto 0;
-    border-radius: 4px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    margin: 0 auto 2rem;
+    padding: 6px;
+    background: #fff;
+    border: 1px solid var(--rule);
+    box-shadow: 0 4px 14px rgba(60, 40, 20, 0.18);
+}
+
+main.home h1 {
+    font-size: 3.2rem;
+    margin-bottom: 0.75rem;
+}
+
+main.home h1::after {
+    display: none;
 }
 
 .subtitle {
-    font-size: 1.3rem;
+    font-family: var(--display-italic);
     font-style: italic;
-    margin: 0 0 1.5rem;
+    font-size: 1.45rem;
+    color: var(--ink-soft);
+    margin: 0 0 2.25rem;
+}
+
+.subtitle::after {
+    content: "\2766";
+    display: block;
+    margin-top: 1rem;
+    font-family: var(--text-font);
+    font-style: normal;
+    font-size: 1.3rem;
+    color: var(--accent);
 }
 
 .epigraph p {
-    font-size: 1.05rem;
-    color: var(--muted);
+    max-width: 30em;
     margin: 0 auto;
-    max-width: 32em;
+    font-size: 1.08rem;
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--ink-soft);
+}
+
+.epigraph em {
+    font-style: normal;
+}
+
+/* Table of contents, numbered in roman numerals; the bibliography is not a chapter. */
+main.home {
+    counter-reset: chapter;
+}
+
+main.home h3 {
+    margin: 0.55rem 0;
+    font-family: var(--text-font);
+    font-style: normal;
+    font-size: 1.3rem;
+}
+
+main.home h3 a,
+main.home h3 a:visited {
+    color: var(--ink);
+    text-decoration: none;
+}
+
+main.home h3 a:hover,
+main.home h3 a:focus-visible {
+    color: var(--accent);
+}
+
+main.home h3:not(:last-of-type) a::before {
+    counter-increment: chapter;
+    content: counter(chapter, upper-roman) ".\00a0\00a0";
+    font-family: var(--display-font);
+    color: var(--accent);
+}
+
+main.home h3:last-of-type {
+    margin-top: 1.25rem;
+    font-variant: small-caps;
+    letter-spacing: 0.06em;
 }
 
 /* ---------- Small screens ---------- */
 
-@media (max-width: 40em) {
+@media (max-width: 48em) {
     body {
-        font-size: 1.1rem;
-        padding: 0 0.5rem 1.5rem;
+        font-size: 1.15rem;
+        padding: 0 0.5rem 2rem;
     }
 
     main {
-        padding: 0.25rem 1rem 1.5rem;
+        padding: 2rem 1.25rem 2rem;
+    }
+
+    main.home {
+        margin-top: 1rem;
     }
 
     h1 {
-        margin: 0 -1rem 1.25rem;
-        font-size: 1.6rem;
+        font-size: 2rem;
+    }
+
+    main.home h1 {
+        font-size: 2.4rem;
+    }
+
+    p,
+    blockquote {
+        text-align: left;
+    }
+
+    blockquote {
+        margin: 1.25em 0 1.5em 0.5em;
+        padding-left: 1em;
     }
 
     .chapter-nav {
-        font-size: 0.85rem;
+        font-size: 0.95rem;
     }
 
     .chapter-nav .contents {
@@ -287,14 +450,16 @@ main a {
 @media print {
     body {
         background: #fff;
-        font-size: 12pt;
+        font-size: 11.5pt;
         padding: 0;
     }
 
     main {
         box-shadow: none;
+        border: 0;
         max-width: none;
         padding: 0;
+        background: none;
     }
 
     .site-header,
@@ -302,10 +467,8 @@ main a {
         display: none;
     }
 
-    h1 {
-        background: none;
-        color: #000;
-        margin: 0 0 1em;
+    a {
+        color: inherit;
+        text-decoration: none;
     }
-
 }
